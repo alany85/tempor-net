@@ -1,0 +1,66 @@
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m/tmp/ipykernel_1440/820002518.py[0m in [0;36m<cell line: 0>[0;34m()[0m
+[1;32m     16[0m [0;31m# 2. 开始训练[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m [0mprint[0m[0;34m([0m[0;34m"\n🚀 Starting training..."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 18[0;31m history = train.train_model(  # 🌟 调用你们 train.py 里的 train_model
+[0m[1;32m     19[0m     [0mmodel[0m[0;34m=[0m[0mmodel[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m     [0mtrain_loader[0m[0;34m=[0m[0mtrain_loader[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/content/drive/MyDrive/Final_Project/train.py[0m in [0;36mtrain_model[0;34m(model, train_loader, val_loader, criterion, optimizer, scheduler, epochs, device)[0m
+[1;32m    120[0m         [0mhistory[0m[0;34m[[0m[0;34m"epochs"[0m[0;34m][0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mepoch[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    121[0m [0;34m[0m[0m
+[0;32m--> 122[0;31m         train_loss, train_acc = train_one_epoch(
+[0m[1;32m    123[0m             [0mmodel[0m[0;34m=[0m[0mmodel[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    124[0m             [0mloader[0m[0;34m=[0m[0mtrain_loader[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/content/drive/MyDrive/Final_Project/train.py[0m in [0;36mtrain_one_epoch[0;34m(model, loader, criterion, optimizer, device, epoch_idx, total_epochs)[0m
+[1;32m     33[0m         [0moptimizer[0m[0;34m.[0m[0mzero_grad[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     34[0m         logits = (
+[0;32m---> 35[0;31m             [0mmodel[0m[0;34m.[0m[0mforward_logits[0m[0;34m([0m[0mimages[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     36[0m             [0;32mif[0m [0mhasattr[0m[0;34m([0m[0mmodel[0m[0;34m,[0m [0;34m"forward_logits"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     37[0m             [0;32melse[0m [0mmodel[0m[0;34m([0m[0mimages[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/content/drive/MyDrive/Final_Project/resnet.py[0m in [0;36mforward_logits[0;34m(self, x)[0m
+[1;32m    150[0m [0;34m[0m[0m
+[1;32m    151[0m     [0;32mdef[0m [0mforward_logits[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mx[0m[0;34m:[0m [0mtorch[0m[0;34m.[0m[0mTensor[0m[0;34m)[0m [0;34m->[0m [0mtorch[0m[0;34m.[0m[0mTensor[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 152[0;31m         [0mfeatures[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mforward_features[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    153[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mfc[0m[0;34m([0m[0mfeatures[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    154[0m [0;34m[0m[0m
+
+[0;32m/content/drive/MyDrive/Final_Project/resnet.py[0m in [0;36mforward_features[0;34m(self, x)[0m
+[1;32m    136[0m     [0;32mdef[0m [0mforward_features[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mx[0m[0;34m:[0m [0mtorch[0m[0;34m.[0m[0mTensor[0m[0;34m)[0m [0;34m->[0m [0mtorch[0m[0;34m.[0m[0mTensor[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    137[0m         [0mx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mconv1[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 138[0;31m         [0mx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mbn1[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    139[0m         [0mx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mrelu[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    140[0m         [0mx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mmaxpool[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py[0m in [0;36m_wrapped_call_impl[0;34m(self, *args, **kwargs)[0m
+[1;32m   1774[0m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_compiled_call_impl[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m  [0;31m# type: ignore[misc][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1775[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1776[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_call_impl[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1777[0m [0;34m[0m[0m
+[1;32m   1778[0m     [0;31m# torchrec tests the code consistency with the following code[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py[0m in [0;36m_call_impl[0;34m(self, *args, **kwargs)[0m
+[1;32m   1785[0m                 [0;32mor[0m [0m_global_backward_pre_hooks[0m [0;32mor[0m [0m_global_backward_hooks[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1786[0m                 or _global_forward_hooks or _global_forward_pre_hooks):
+[0;32m-> 1787[0;31m             [0;32mreturn[0m [0mforward_call[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1788[0m [0;34m[0m[0m
+[1;32m   1789[0m         [0mresult[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.12/dist-packages/torch/nn/modules/batchnorm.py[0m in [0;36mforward[0;34m(self, input)[0m
+[1;32m    159[0m [0;34m[0m[0m
+[1;32m    160[0m     [0;32mdef[0m [0mforward[0m[0;34m([0m[0mself[0m[0;34m,[0m [0minput[0m[0;34m:[0m [0mTensor[0m[0;34m)[0m [0;34m->[0m [0mTensor[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 161[0;31m         [0mself[0m[0;34m.[0m[0m_check_input_dim[0m[0;34m([0m[0minput[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    162[0m [0;34m[0m[0m
+[1;32m    163[0m         [0;31m# exponential_average_factor is set to self.momentum[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.12/dist-packages/torch/nn/modules/batchnorm.py[0m in [0;36m_check_input_dim[0;34m(self, input)[0m
+[1;32m    462[0m     [0;32mdef[0m [0m_check_input_dim[0m[0;34m([0m[0mself[0m[0;34m,[0m [0minput[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    463[0m         [0;32mif[0m [0minput[0m[0;34m.[0m[0mdim[0m[0;34m([0m[0;34m)[0m [0;34m!=[0m [0;36m4[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 464[0;31m             [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34mf"expected 4D input (got {input.dim()}D input)"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    465[0m [0;34m[0m[0m
+[1;32m    466[0m [0;34m[0m[0m
+
+[0;31mValueError[0m: expected 4D input (got 3D input)
