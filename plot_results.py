@@ -9,7 +9,7 @@ epochs_raw = np.arange(1, 11)
 train_raw = [32.45, 38.24, 44.80, 48.68, 51.47, 53.92, 55.98, 57.81, 59.67, 61.73]
 val_raw = [34.48, 42.69, 44.67, 46.70, 50.74, 53.38, 54.82, 55.66, 56.62, 55.37]
 
-epochs_ft = np.arange(1, 6)
+epochs_ft = np.arange(11, 16)
 train_rnd = [64.52, 66.06, 66.68, 66.95, 67.16]
 val_rnd = [59.98, 59.57, 60.57, 59.77, 60.39]
 
@@ -47,7 +47,7 @@ axes[0].set_xlabel('Epoch', fontsize=12)
 axes[0].set_ylabel('Accuracy (%)', fontsize=12)
 axes[0].grid(True, linestyle='--', alpha=0.7)
 axes[0].legend(fontsize=11)
-axes[0].set_xticks(np.arange(1, 11))
+axes[0].set_xticks(np.arange(1, 16))
 axes[0].set_ylim(30, 75)
 
 # Subplot 2: Validation Accuracy
@@ -59,7 +59,7 @@ axes[1].set_xlabel('Epoch', fontsize=12)
 axes[1].set_ylabel('Accuracy (%)', fontsize=12)
 axes[1].grid(True, linestyle='--', alpha=0.7)
 axes[1].legend(fontsize=11)
-axes[1].set_xticks(np.arange(1, 11))
+axes[1].set_xticks(np.arange(1, 16))
 axes[1].set_ylim(30, 75)
 
 plt.tight_layout()
